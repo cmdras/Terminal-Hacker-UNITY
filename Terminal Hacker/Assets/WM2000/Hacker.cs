@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
@@ -73,31 +70,83 @@ public class Hacker : MonoBehaviour {
         switch (level)
         {
             case 1:
-                password = level1Passwords[2];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
                 break;
             case 2:
-                password = level2Passwords[1];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
                 break;
             case 3:
-                password = level3Passwords[4];
+                password = level3Passwords[Random.Range(0, level3Passwords.Length)];
                 break;
             default:
                 Debug.LogError("Error, Invalid level number");
                 break;
         }
 
-        Terminal.WriteLine("Please enter your password: ");
+        Terminal.WriteLine("Enter your password, hint: ");
+        Terminal.WriteLine(password.Anagram());
     }
 
     void CheckPassword(string input)
     {
         if (input == password)
         {
-            Terminal.WriteLine("Password correct!");
+            ShowWinScreen();
         }
         else
         {
             Terminal.WriteLine("Wrong Password, try again.");
         }
+    }
+
+     void ShowWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch (level)
+        {
+            case 1:
+                Terminal.WriteLine("Password correct! Let's go to the beach!");
+
+                Terminal.WriteLine(@"
+         \ | /
+        --(_)--
+         / | \
+");
+                break;
+            case 2:
+                Terminal.WriteLine("Password correct! Have a couple of rings!");
+
+                Terminal.WriteLine(@"
+      ,**,
+      .\/.
+     //  \\-.
+     \\_///`\\
+      '-\\__//
+         '--'
+");
+                break;
+            case 3:
+                Terminal.WriteLine("Password correct! What a stud!");
+
+                Terminal.WriteLine(@"
+          __O         O__
+          \/\         /\/
+          |\ \       / /|
+         /  | \_ = _/ |  \
+        ~   ~         ~   ~
+
+");
+                break;
+            default:
+                Debug.LogError("Error, invalid level reached");
+                break;
+        }
+
     }
 }
