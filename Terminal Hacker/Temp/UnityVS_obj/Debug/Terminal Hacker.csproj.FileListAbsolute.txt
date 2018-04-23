@@ -1,4 +1,0 @@
-/Volumes/Elements/Unity_Repos/2_Terminal_Hacker/Terminal Hacker/Temp/UnityVS_obj/Debug/Terminal Hacker.csprojResolveAssemblyReference.cache
-/Volumes/Elements/Unity_Repos/2_Terminal_Hacker/Terminal Hacker/Temp/UnityVS_obj/Debug/Terminal Hacker.csproj.CoreCompileInputs.cache
-/Volumes/Elements/Unity_Repos/2_Terminal_Hacker/Terminal Hacker/Temp/UnityVS_obj/Debug/Assembly-CSharp.dll
-/Volumes/Elements/Unity_Repos/2_Terminal_Hacker/Terminal Hacker/Temp/UnityVS_obj/Debug/Assembly-CSharp.pdb
