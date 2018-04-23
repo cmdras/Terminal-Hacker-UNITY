@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
+    // Game Configuration
+    string[] level1Passwords = { "ball", "beach", "sand", "fish", "sunscreen" };
+    string[] level2Passwords = { "bride", "ringboy", "bachelor", "elope", "weddingcake" };
+    string[] level3Passwords = { "icehockey", "volleyball", "snowboarding", "prowrestling", "mixedmartialarts" };
+
+    // Game State
     int level;
+    string password;
     enum Screen { MainMenu, Password, Win };
-    Screen currentScreen;
+    Screen currentScreen; 
 
     // Use this for initialization
 	void Start () {
@@ -38,45 +45,59 @@ public class Hacker : MonoBehaviour {
         {
             RunMainMenu(input);
         }
-
-
+        else if (currentScreen == Screen.Password){
+            CheckPassword(input);
+        }
     }
 
     void RunMainMenu(string input)
     {
-        if (input == "1")
-        {
-            level = 1;
+        bool isValidLevlNumber = (input == "1" || input == "2" || input == "3");
+        if(isValidLevlNumber) {
+            level = int.Parse(input);
             StartGame();
-        }
-        else if (currentScreen == Screen.MainMenu)
-        {
-
-        }
-        else if (input == "2")
-        {
-            level = 2;
-            StartGame();
-        }
-        else if (input == "3")
-        {
-            level = 3;
-            StartGame();
-        }
-        else if (input == "007")
+        } else if (input == "007") // easter egg
         {
             ShowMainMenu("Welcome back, Agent Bond.");
-        }
-        else
-        {
+        } else {
             print("Invalid input");
         }
+
     }
 
     void StartGame()
     {
         currentScreen = Screen.Password;
-        Terminal.WriteLine("You have chosen level: " + level);
+        Terminal.ClearScreen();
+
+        switch (level)
+        {
+            case 1:
+                password = level1Passwords[2];
+                break;
+            case 2:
+                password = level2Passwords[1];
+                break;
+            case 3:
+                password = level3Passwords[4];
+                break;
+            default:
+                Debug.LogError("Error, Invalid level number");
+                break;
+        }
+
         Terminal.WriteLine("Please enter your password: ");
+    }
+
+    void CheckPassword(string input)
+    {
+        if (input == password)
+        {
+            Terminal.WriteLine("Password correct!");
+        }
+        else
+        {
+            Terminal.WriteLine("Wrong Password, try again.");
+        }
     }
 }
